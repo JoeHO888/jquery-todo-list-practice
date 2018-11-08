@@ -1,5 +1,3 @@
-
-var boxes;
 $(document)
     .ready(function () {
 
@@ -26,28 +24,58 @@ $(document)
         // code to be implemented
 		
 		// Add Item
-		$boxes = $(":checkbox");
 		$("#button").click(function(){
 			var uuid = generateUUID();
-			var item = $("input[name='ListItem']").val();
-			$("ol").append("<li id="+uuid+" class=''>"+"<input name='done-todo' type='checkbox' class='done-todo' onclick='handleClick(this)'>"+item+"</li>");
-			$boxes = $(":checkbox");
+			var item = $("textarea[class='createItem']").val();
+			$("ol").append("<li id="+uuid+" class='' onclick='listenForDoubleClick(this)'>"+"<input name='done-todo' type='checkbox' class='done-todo' onclick='handleCheckBox(this)'>"+item+"</li>");
 			
 		});
 		
 		
+		$('textarea').each(function () {
+			this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+		}).on('input', function () {
+				this.style.height = 'auto';
+				this.style.height = (this.scrollHeight) + 'px';
+			});
+		
 });
 
-function handleClick(cb) {
+function handleCheckBox(cb) {
   var parentId = cb.parentNode.id;
   if (cb.checked){
 	  $("#"+parentId).addClass("checked");
-
-	  
+	  console.log($("#"+parentId));
   }else{
 	  $("#"+parentId).removeClass("checked");
   }
 }
+
+function listenForDoubleClick(element) {
+  element.contentEditable = true;
+  setTimeout(function() {
+    if (document.activeElement !== element) {
+      element.contentEditable = false;
+    }
+  }, 300);
+}
+	
+function filterActive(element){
+	 $("li").show();
+	 $("li[class='checked']").hide();
+
+} 
+
+function filterAll(element){
+	 $("li").show();
+
+}  
+
+function filterComplete(element){
+	$("li").show();
+	$("li[class='']").hide();
+
+}  
 
 function showTime(){
     var date = new Date();
