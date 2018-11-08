@@ -2,14 +2,16 @@
 
 body {
     font: normal normal 13px/16px "Open Sans", sans-serif;
-    background: #ccc;
+	background-image: url("background.jpg");
+	background-repeat: no-repeat;
+	background-size:     cover; 
 }
 
 .container{
     padding: 20px;
     width: 400px;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 100px;
     background: white;
     border-radius: 5px;
 }
@@ -93,4 +95,17 @@ li:hover{
 input[type=checkbox].done-todo { 
 	
     margin: 5px 5px 2px 0; 
+}
+
+.clock {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #17D4FE;
+    font-size: 60px;
+    font-family: Orbitron;
+    letter-spacing: 7px;
+
+
 }
