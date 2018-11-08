@@ -18,6 +18,12 @@ body {
 
 .input-text{
     width: 80%;
+	margin-left: 2%;
+}
+
+.createItem{
+    width: 80%;
+	margin-left: 2%;
 }
 
 input{
