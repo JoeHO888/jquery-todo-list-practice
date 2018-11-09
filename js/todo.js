@@ -27,7 +27,7 @@ $(document)
 		$("#button").click(function(){
 			var uuid = generateUUID();
 			var item = $("textarea[class='createItem']").val();
-			$("ol").append("<li id="+uuid+" class='' onclick='listenForDoubleClick(this)'>"+"<input name='done-todo' type='checkbox' class='done-todo' onclick='handleCheckBox(this)'>"+item+"</li>");
+			$("ol").append("<li id="+uuid+" class='' onclick='listenForDoubleClick(this)'>"+"<input name='done-todo' type='checkbox' class='done-todo' >"+item+"</li>");
 			
 		});
 		
@@ -38,18 +38,44 @@ $(document)
 				this.style.height = 'auto';
 				this.style.height = (this.scrollHeight) + 'px';
 			});
+			
+			
+		$("input[type='checkbox']").click(function() {
+			if($(this).is(":checked")){
+			// do sth for checked checkbox
+			console.log("ssdfadaf");
+		}
+		console.log("ssdfadaf");
+		});	
 		
 });
 
-function handleCheckBox(cb) {
-  var parentId = cb.parentNode.id;
-  if (cb.checked){
-	  $("#"+parentId).addClass("checked");
-	  console.log($("#"+parentId));
-  }else{
-	  $("#"+parentId).removeClass("checked");
-  }
-}
+$(document).on('click','input[class="done-todo"]',function(){
+		var parentId = $(this).parent().attr('id')
+		if($(this).is(":checked")){
+			$("#"+parentId).addClass("checked");
+		}else{
+			$("#"+parentId).removeClass("checked");
+		}
+});
+
+
+$(document).on('click','a[data-filter="active" ]',function(){
+	 $("li").show();
+	 $("li[class='checked']").hide();
+});
+
+$(document).on('click','a[data-filter="complete"]',function(){
+	 $("li").show();
+	 $("li[class='']").hide();
+});
+
+
+$(document).on('click','a[data-filter="all"]',function(){
+	 $("li").show();
+});
+
+
 
 function listenForDoubleClick(element) {
   element.contentEditable = true;
@@ -60,22 +86,6 @@ function listenForDoubleClick(element) {
   }, 300);
 }
 	
-function filterActive(element){
-	 $("li").show();
-	 $("li[class='checked']").hide();
-
-} 
-
-function filterAll(element){
-	 $("li").show();
-
-}  
-
-function filterComplete(element){
-	$("li").show();
-	$("li[class='']").hide();
-
-}  
 
 function showTime(){
     var date = new Date();
