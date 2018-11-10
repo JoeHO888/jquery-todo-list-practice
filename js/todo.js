@@ -38,15 +38,6 @@ $(document)
 				this.style.height = 'auto';
 				this.style.height = (this.scrollHeight) + 'px';
 			});
-			
-			
-		$("input[type='checkbox']").click(function() {
-			if($(this).is(":checked")){
-			// do sth for checked checkbox
-			console.log("ssdfadaf");
-		}
-		console.log("ssdfadaf");
-		});	
 		
 });
 
