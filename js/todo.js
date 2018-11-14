@@ -27,7 +27,7 @@ $(document)
 		$("#button").click(function(){
 			var uuid = generateUUID();
 			var item = $("textarea[class='createItem']").val();
-			$("ol").append("<li id="+uuid+" class='' onclick='listenForDoubleClick(this)'>"+"<input name='done-todo' type='checkbox' class='done-todo' >"+item+"</li>");
+			$("ol").append("<li id="+uuid+" class='' >"+"<input name='done-todo' type='checkbox' class='done-todo' >"+"<span>"+item+"</span>"+"</li>"); //onclick='listenForDoubleClick(this)'
 			
 		});
 		
@@ -67,15 +67,17 @@ $(document).on('click','a[data-filter="all"]',function(){
 });
 
 
-
-function listenForDoubleClick(element) {
-  element.contentEditable = true;
-  setTimeout(function() {
-    if (document.activeElement !== element) {
-      element.contentEditable = false;
+$(document).on('click','span',function(){
+	$(this).attr('contentEditable',true);
+	setTimeout(function() {
+    if (document.activeElement !== $(this)) {
+      $(this).attr('contentEditable',false);
     }
   }, 300);
-}
+
+  
+	 
+});
 	
 
 function showTime(){
